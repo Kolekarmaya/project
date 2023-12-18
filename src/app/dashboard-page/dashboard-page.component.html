@@ -45,9 +45,12 @@
 
                     <mat-menu #Miscellaneous>
                         <ng-template matMenuContent>
-                            <button mat-menu-item (click)="menuenter('FUND_VALUE_QUERY',' Fund Value Query',1)"
+                            <button mat-menu-item (click)="menuenter('Miscellaneous',' Fund Value Query',1)"
                                 title=" Fund Value Query">
                                 Fund Value Query </button>
+                            <button mat-menu-item (click)="menuenter('Miscellaneous',' Admin duplicate charges',2)"
+                                title="Admin duplicate charges">
+                                Admin duplicate charges </button>
                         </ng-template>
                     </mat-menu>
 
@@ -186,9 +189,9 @@
                                 title="Rebalancing Skipped Cases"> Rebalancing Skipped Cases
                             </button>
                             <button mat-menu-item
-                                (click)="menuenter('CORRECTNESS_CHECKING_OF_INCREASING_ANNUITY_OPT','Correctness checking of Increasing Annuity opt (1.5 & 1.6 )',0)"
-                                title="Correctness checking of Increasing Annuity opt (1.5 & 1.6 )">
-                                Correctness checking of Increasing Annuity opt (1.5 & 1.6 ) </button>
+                                (click)="menuenter('_22_CORRECTNESS_CHECKING_OF_INCREASING_ANNUITY_OPT','22 Product_Correctness checking of Increasing Annuity opt (1.5 & 1.6 )',0)"
+                                title="22 Product_Correctness checking of Increasing Annuity opt (1.5 & 1.6 )">
+                                22 Product_Correctness checking of Increasing Annuity opt (1.5 & 1.6 ) </button>
                             <!-- <button mat-menu-item
                                 (click)="menuenter('RIDER_TERM_OVER_BUT_STATUS_NOT_CHANGED','Rider Term over but status not changed',0)" title="Rider Term over but status not changed">
                                 Rider Term over but status not changed </button> -->
@@ -277,16 +280,120 @@
                                 (click)="menuenter('POLICY_STATUS_MOVED_BACK_FROM_EXIT_TO_INFORCE','Policy status moved back from Exit to Inforce',0)"
                                 title="Policy status moved back from Exit to Inforce">
                                 Policy status moved back from Exit to Inforce</button>
-
-
+                            <button mat-menu-item
+                                (click)="menuenter('LOAN_AMOUNT_PRESENT_IN_EXIT_CASES','Loan amount present in exit cases',0)"
+                                title="Loan amount present in exit cases">
+                                Loan amount present in exit cases</button>
+                            <button mat-menu-item
+                                (click)="menuenter('2W_PRODUCT_INCREASING_ANNUITY_OPTION_1.5_&_1.6','2W Product_Increasing Annuity Option 1.5 & 1.6',0)"
+                                title="2W Product_Increasing Annuity Option 1.5 & 1.6">
+                                2W Product_Increasing Annuity Option 1.5 & 1.6</button>
+                            <button mat-menu-item
+                                (click)="menuenter('FULL_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_PAID_UP','Full premium not received but status moved to Paid-up',0)"
+                                title="Full premium not received but status moved to Paid-up">
+                                Full premium not received but status moved to Paid-up</button>
+                            <button mat-menu-item
+                                [matMenuTriggerFor]="MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU"
+                                title=" Minimum premium not received but status moved to RPU">
+                                Minimum premium not received but status moved to RPU</button>
+                            <!-- <button mat-menu-item
+                                (click)="menuenter('MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU',' Minimum premium not received but status moved to RPU',0)"
+                                title=" Minimum premium not received but status moved to RPU">
+                                Minimum premium not received but status moved to RPU</button> -->
+                            <button mat-menu-item (click)="menuenter('PENDING_ACTIVITY',' Pending Activity',0)"
+                                title=" Pending Activity">
+                                Pending Activity</button>
+                            <button mat-menu-item (click)="menuenter('INCREASING_ANNUITY',' Increasing Annuity',0)"
+                                title=" Increasing Annuity">
+                                Increasing Annuity</button>
+                            <button mat-menu-item [matMenuTriggerFor]="PAID_UP_VALUE" title="Paid-up value">
+                                Paid-up value</button>
+                            <button mat-menu-item [matMenuTriggerFor]="JOINT_BORROWER" title="Joint borrower">
+                                Joint borrower</button>
+                            <button mat-menu-item [matMenuTriggerFor] ="CORRECTNESS_OF_SA_UNDER_SAMF_PRODUCTS"
+                                title=" Correctness of SA Under SAMF Products">
+                                Correctness of SA Under SAMF Products</button>
+                                <button mat-menu-item (click)="menuenter('PPT_PT_FOR_LPPT','PPT = PT for LPPT',1)"
+                                title="PPT = PT for LPPT  ">
+                                PPT = PT for LPPT  </button>
                         </ng-template>
                     </mat-menu>
-                    <!-- <mat-menu #Adhoc="matMenu">
-                    <ng-template matMenuContent>
-                       
 
-                    </ng-template>
-                </mat-menu> -->
+                    <mat-menu #CORRECTNESS_OF_SA_UNDER_SAMF_PRODUCTS>
+                        <ng-template matMenuContent>
+                            <button mat-menu-item (click)="menuenter('CORRECTNESS_OF_SA_UNDER_SAMF_PRODUCTS','2K',1)" title="2K">
+                                2K </button>
+                            <button mat-menu-item (click)="menuenter('CORRECTNESS_OF_SA_UNDER_SAMF_PRODUCTS',' 1J',2)" title="1J">
+                                1J </button>
+                            <button mat-menu-item (click)="menuenter('CORRECTNESS_OF_SA_UNDER_SAMF_PRODUCTS',' 2P',3)" title="2P">
+                                2P </button>
+                                <button mat-menu-item (click)="menuenter('CORRECTNESS_OF_SA_UNDER_SAMF_PRODUCTS',' 2G',4)" title="2G">
+                                2G </button>
+                        </ng-template>
+                    </mat-menu>
+
+                    <mat-menu #MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU>
+                        <ng-template matMenuContent>
+                            <button mat-menu-item
+                                (click)="menuenter('MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU','35 & 12',1)"
+                                title="35 & 12">
+                                35 & 12 </button>
+                            <button mat-menu-item
+                                (click)="menuenter('MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU','1N & 9',2)"
+                                title="1N & 9">
+                                1N & 9 </button>
+                            <button mat-menu-item
+                                (click)="menuenter('MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU','1Z & 2M',3)"
+                                title="1Z & 2M">
+                                1Z & 2M </button>
+                            <button mat-menu-item
+                                (click)="menuenter('MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU','1J &  2C',4)"
+                                title="1J &  2C">
+                                1J & 2C </button>
+                            <button mat-menu-item
+                                (click)="menuenter('MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU','[2D,2P,1X,1W,1E,04]',5)"
+                                title="[2D,2P,1X,1W,1E,04]">
+                                [2D,2P,1X,1W,1E,04] </button>
+                            <button mat-menu-item
+                                (click)="menuenter('MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU','[14,06,1B,1R,08]',6)"
+                                title="[14,06,1B,1R,08]">
+                                [14,06,1B,1R,08] </button>
+                            <button mat-menu-item
+                                (click)="menuenter('MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU','[1P, 2K, 17,57]',7)"
+                                title="[1P, 2K, 17,57]">
+                                [1P, 2K, 17,57] </button>
+                            <button mat-menu-item
+                                (click)="menuenter('MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU','All Modules',8)"
+                                title="All Modules">
+                                All Modules </button>
+                        </ng-template>
+                    </mat-menu>
+
+                    <mat-menu #JOINT_BORROWER>
+                        <ng-template matMenuContent>
+                            <button mat-menu-item (click)="menuenter('JOINT_BORROWER','70',1)" title="70">
+                                70 </button>
+                            <button mat-menu-item (click)="menuenter('JOINT_BORROWER',' 93',2)" title="93">
+                                93 </button>
+                            <button mat-menu-item (click)="menuenter('JOINT_BORROWER',' 91',3)" title="91">
+                                91 </button>
+                        </ng-template>
+                    </mat-menu>
+
+                    <mat-menu #PAID_UP_VALUE>
+                        <ng-template matMenuContent>
+                            <button mat-menu-item (click)="menuenter('PAID_UP_VALUE',' All Products',1)"
+                                title=" All Products">
+                                All Products </button>
+                            <button mat-menu-item (click)="menuenter('PAID_UP_VALUE',' Prod 57,14,1N',2)"
+                                title=" Prod 57,14,1N">
+                                Prod 57,14,1N </button>
+                        </ng-template>
+                    </mat-menu>
+
+
+
+
                     <mat-menu #UNCLAIM>
                         <ng-template matMenuContent>
                             <button mat-menu-item (click)="menuenter('UNCLAIM',' Death',1)" title=" Death">
@@ -575,7 +682,7 @@
                 </div>
             </mat-toolbar-row>
 
-           
+
 
             <mat-toolbar-row style="border: 1px solid #f4ebf4; margin:10px; height: 55px;">
                 <div>
@@ -644,19 +751,19 @@
 
                 <mat-menu #_UNCLAIM_="matMenu">
                     <ng-template matMenuContent>
-                        <button mat-menu-item (mouseenter)="menuenters('Death',1)" [matMenuTriggerFor]="payout_2"
-                            title=" Death">
+                        <button mat-menu-item (mouseenter)="menuenters('UNCLAIM-Death',1)"
+                            [matMenuTriggerFor]="payout_2" title=" Death">
                             Death </button>
-                        <button mat-menu-item (mouseenter)="menuenters('Maturity',2)" [matMenuTriggerFor]="payout_2"
-                            title=" Maturity">
+                        <button mat-menu-item (mouseenter)="menuenters('UNCLAIM-Maturity',2)"
+                            [matMenuTriggerFor]="payout_2" title=" Maturity">
                             Maturity </button>
-                        <button mat-menu-item (mouseenter)="menuenters('LTR',3)" [matMenuTriggerFor]="payout_2"
+                        <button mat-menu-item (mouseenter)="menuenters('UNCLAIM-LTR',3)" [matMenuTriggerFor]="payout_2"
                             title="LTR">
                             LTR </button>
-                        <button mat-menu-item (mouseenter)="menuenters('Policy_Deposit_Refund',4)"
+                        <button mat-menu-item (mouseenter)="menuenters('UNCLAIM-Policy_Deposit_Refund',4)"
                             [matMenuTriggerFor]="payout_2" title=" Policy Deposit Refund">
                             Policy Deposit Refund </button>
-                        <button mat-menu-item (mouseenter)="menuenters('SB',5)" [matMenuTriggerFor]="payout_2"
+                        <button mat-menu-item (mouseenter)="menuenters('UNCLAIM-SB',5)" [matMenuTriggerFor]="payout_2"
                             title=" SB">
                             SB </button>
                     </ng-template>
@@ -664,35 +771,39 @@
 
                 <mat-menu #DISCO_CHARGES="matMenu">
                     <ng-template matMenuContent>
-                        <button mat-menu-item (mouseenter)="menuenters('1M', 1)" [matMenuTriggerFor]="payout_2"
-                            title="1M"> 1M
+                        <button mat-menu-item (mouseenter)="menuenters('DISCO_CHARGES-1M', 1)"
+                            [matMenuTriggerFor]="payout_2" title="1M"> 1M
                         </button>
-                        <button mat-menu-item (mouseenter)="menuenters('ULIP_BASE',2)" [matMenuTriggerFor]="payout_2"
-                            title="ULIP_BASE">
+                        <button mat-menu-item (mouseenter)="menuenters('DISCO_CHARGES-ULIP_BASE',2)"
+                            [matMenuTriggerFor]="payout_2" title="ULIP_BASE">
                             ULIP_BASE </button>
                     </ng-template>
                 </mat-menu>
+
                 <mat-menu #DEPOSITE_PRESENT_BUT_NOT_ALLOCATED="matMenu">
                     <ng-template matMenuContent>
-                        <button mat-menu-item (mouseenter)="menuenters('ULIP', 1)" [matMenuTriggerFor]="payout_2"
-                            title="ULIP"> ULIP
+                        <button mat-menu-item (mouseenter)="menuenters('DEPOSITE_PRESENT_BUT_NOT_ALLOCATED-ULIP', 1)"
+                            [matMenuTriggerFor]="payout_2" title="ULIP"> ULIP
                         </button>
-                        <button mat-menu-item (mouseenter)="menuenters('NON_ULIP',2)" [matMenuTriggerFor]="payout_2"
-                            title="NON ULIP ">
+                        <button mat-menu-item (mouseenter)="menuenters('DEPOSITE_PRESENT_BUT_NOT_ALLOCATED-NON_ULIP',2)"
+                            [matMenuTriggerFor]="payout_2" title="NON ULIP ">
                             NON ULIP </button>
                     </ng-template>
                 </mat-menu>
+
+
                 <mat-menu #MORTALITY_CHARGE="matMenu">
                     <ng-template matMenuContent>
-                        <button mat-menu-item (mouseenter)="menuenters('STANDARD', 1)" [matMenuTriggerFor]="payout_2"
-                            title="STANDARD">
+                        <button mat-menu-item (mouseenter)="menuenters('MORTALITY_CHARGE-STANDARD', 1)"
+                            [matMenuTriggerFor]="payout_2" title="STANDARD">
                             STANDARD
                         </button>
-                        <button mat-menu-item (mouseenter)="menuenters('EXTRA',2)" [matMenuTriggerFor]="payout_2"
-                            title="EXTRA">
+                        <button mat-menu-item (mouseenter)="menuenters('MORTALITY_CHARGE-EXTRA',2)"
+                            [matMenuTriggerFor]="payout_2" title="EXTRA">
                             EXTRA </button>
                     </ng-template>
                 </mat-menu>
+
 
                 <mat-menu #payout="matMenu">
                     <ng-template matMenuContent>
@@ -780,7 +891,7 @@
                         aria-label="Example icon-button with menu icon">
                         <mat-icon>menu</mat-icon>
                     </button>
-                    <span> MIS</span>
+                    <span> MIS </span>
                     <mat-menu #payoutList5="matMenu">
                         <ng-template matMenuContent>
                             <button mat-menu-item (click)="showMISWindow()" title="MIS Dashboard">MIS Dashboard</button>

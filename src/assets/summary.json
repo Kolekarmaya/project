@@ -1,0 +1,14 @@
+{
+ 
+    "response_text":[
+ 
+     {"REMARKS": "error found",  "TABLE_NAME": "Dq_table", "TOTAL_COUNT":2, "MONTH":"jan"},
+     {"REMARKS": "error ",  "TABLE_NAME": "Dq_e1", "TOTAL_COUNT":3, "MONTH":"feb"},
+     {"REMARKS": "errorund3",  "TABLE_NAME": "ble2", "TOTAL_COUNT":5, "MONTH":"mar"},
+     {"REMARKS": "error found",  "TABLE_NAME": "Dq_table", "TOTAL_COUNT":3, "MONTH":"fan"}
+     
+  
+    ],
+    "response_code": 1,
+    "response_message": "Code executed successfully"
+ }

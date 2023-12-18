@@ -1,0 +1,31 @@
+{
+    "response_text":  [
+        {
+            "Module": "DISCO_ULIP",
+            "Total": 22118,
+            "Fail_Cases": 16,
+            "Pass_Cases": 22102,
+            "Data": ["PASS", "FAIL"],
+
+            "moduleName": [
+                "DISCO_ULIP"
+            ],
+            "pass": [
+                22102
+            ],
+            "fail": [
+                16
+            ],
+            "date_wises": [
+                "01/01/2023","02/01/2023"
+            ],
+            "Date_pass": [
+                90,75
+            ],
+            "Date_fail": [
+                10,25
+            ],
+            "DateList":["01/01/2023","02/01/2023","03/01/2023","04/01/2023","05/01/2023","06/01/2023"]
+        }
+    ]
+}

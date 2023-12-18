@@ -10,11 +10,20 @@ import { DefectTrackerService } from '../Service/defect-tracker.service';
   styleUrls: ['./mis-module.component.scss'],
 })
 export class MisModuleComponent implements OnInit {
+  displayMessage:boolean=false;
+  moduleName: any;
+  dailymodule: boolean = false;
+  QCloder: boolean = true;
+
+
   REPORT_NAMES: string;
   // module1: string;
   module1=localStorage.getItem('Day')
   // console.log(localStorage.getItem('Day'));
  module2=localStorage.getItem('week')
+ module3=localStorage.getItem('allModule')
+ 
+
   selectedRowD: number;
   moduleData: any;
   // console.log(localStorage.getItem('week'));
@@ -28,7 +37,6 @@ export class MisModuleComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     if (this.module1=== 'Daily1') {
       console.log("dayly print");
       this.daily();
@@ -38,42 +46,35 @@ export class MisModuleComponent implements OnInit {
       console.log("Weekly1 print");
       this.Weekly();
       localStorage.clear();
-      
     }
-
+    else if (this.module3=== 'allModule') {
+      console.log("1234r5t67890");
+      // this.Weekly();
+      localStorage.clear();
+    }
+    
+   
 
   }
-  moduleName: any;
-  dailymodule: boolean = false;
+ 
 
   daily() {
-   
+   this.QCloder = true;
     let obj = {
-      moduleId: '401',
-      request_action: 'Defect Tracker',
+      moduleId: '501',
+      request_action: 'mis',
     }
 
     this.mis.misdaily(obj).subscribe(res => {
       console.log("res", res)
-
       // console.log("res.response_text", res.response_text);
       this.moduleData = res.response_text
       // console.log(" this.moduleData", this.moduleData);
       this.dailymodule = true;
+      this.QCloder = false;
 
     })
   }
-
-  // DonEdit(index: number, item: any) {
-  //   console.log(index);
-  //   this.selectedRowD = index
-  //   this.moduleData.forEach((element:any) => {
-  //     element.isEdit = false;
-  //   })
-  //   item.isEdit = true;
-  
-  // }
-
 
 
   Weekly() {
@@ -112,8 +113,8 @@ export class MisModuleComponent implements OnInit {
       // this.alldata= data;
       console.log('data',data);
 
-      console.log('data',data.REPORT_NAME);
-      localStorage.setItem('data',data.REPORT_NAME)
+      console.log('data',data.Module);
+      localStorage.setItem('data',data.Module)
 
       
       this.router.navigate(['mis-graph'])

@@ -18,14 +18,12 @@ import { formatDate } from '@angular/common';
 export class MainValuationComponent implements OnInit {
 
 
-
-
   curr_projects = [
     'UNITS_INCONSISTENCY', 'STATIC_FIELDS', 'CRITICAL_FIELDS', 'BOUNDARY_CONDITION', 'PPA_CALCULATION',
     'UNITS_PRESENT_IN_PENDING_STATUS', 'UNITS_PRESENT_IN_EXIT_STATUS', 'NEGATIVE_UNITS_PRESENT',
     'UNITS_PRESENT_IN_DISCO_&_REGULAR_FUND', 'UNITS_EQUAL_TO _ZERO_IN_INFORCE_POLICES', '1M_UNITS_PRESENT_IN_DISCO_&_REGULAR_FUNDS','CORRECTNESS_OF_INCREASING_AND_DECREASING_SUM_ASSURED_BENEFIT_VALUATION',
-
-  ];
+    '_2M_Bonus'
+    ];
 
   curr_projects_map = {
 
@@ -39,8 +37,50 @@ export class MainValuationComponent implements OnInit {
     'LTR_PROCESS_STATUS_CHANGE' : 307,
     'DUPLICATE_ENTRIES' :308,
     'RIDER_INCONSISTENCY' : 309,
-    'DOD_PRESENT_BUT_STATUS_NOT_DEATH' : 310
-  };
+    'DOD_PRESENT_BUT_STATUS_NOT_DEATH' : 310,
+'STATIC_FIELDS_SUMMARY' :312,
+'CRITICAL_FIELDS_SUMMARY': 311,
+    'Age_mismatch_NB_EB':313,
+    'Diff_DOB_for_same_client_ID':314,
+    '_2M_Bonus':315,
+    'Paid_Up_value':316,
+    'STATUS_INCONSISTENCY': 317,
+    
+
+    // 21 modules
+    '_1_DOD_BLANK_FOR_DEATH_RELATED_STATUSES' : 351,
+    '_2_SURRENDER_DATE_BLANK_FOR_SURRENDER_RELATED_STATUSES':352,
+    '_3_NON_ZERO_SURRENDER_DATE_FOR_OTHER_THAN_SURRENDER_RELATED_STATUSES':353,
+    '_4_NON_ZERO_DATE_OF_DEATH_FOR_OTHER_THAN_DEATH_RELATED_STATUSES':354,
+    '_5_FUP_BLANK':355,
+    '_6_FUP_AFTER_DATE_OF_VALUATION_FOR_LAPSED_CASES':356,
+    '_7_BASIC_SA_BASIC_PREMIUM_POLICY_TERM_PPT_ZERO_IN_NON_SP_NULL_ZERO':357,
+    '_8_NEGATIVE_PREMIUMS':358,
+    '_9_DEATH_SURRENDER_CHANGES_IN_FUP_DOD_DOI_SURRENDER_DATES': 359,
+    '_10_LA_GENDER_BLANK_NULL_INVALID_VALUE' : 360,
+    '_11_POLICYHOLDER_GENDER_BLANK_NULL_INVALID_VALUE': 361,
+    '_12_DISTRIBUTION_CHANNEL_IS_BLANK_NULL': 362,
+    '_13_ANNUITY_OPTION_CHANGED_FOR_POLICIES' : 363,
+    '_14_SMOKER_FLAG_NULL_INVALID_BLANK_2N_AND_45_V07' : 364,
+    '_15_RIDER_TERM_NOT_WITHIN_BASE_TERM': 365,
+    '_16_SUM_ASSURED_ZERO_FOR_POLICIES_IN_PROTECTION_AND_SDF_DATA' : 366,
+    '_17_1B_MATURED_INFORCE_LUMPSUM_MATURITY_FLAG_AS_Y' : 367,
+    '_18_1B_MATURED_LUMPSUM_MATURITY_FLAG_AS_N_OR_NULL': 368,
+    '_19_35_MATURED_INFORCE_FOR_ENDOWMENT_POLICIES': 369,
+    '_20_35_MATURED_WHOLELIFE_POLICIES': 370,
+    '_21_POLICY_TERM_ZERO_IN_SDF_DATA': 371,
+
+
+    };
+
+    Curr_Summary={
+ //             Summary 
+//  'UNITS_INCONSISTENCY_SUMMARY': 501,
+ 'STATIC_FIELDS_SUMMARY1':501,
+ 'CRITICAL_FIELDS_SUMMARY1':502,
+ 
+    };
+
   QCloder: boolean;
 
 
@@ -49,17 +89,16 @@ export class MainValuationComponent implements OnInit {
     private moduleService: ModuleService,
     private processService: ProcessService,
     private dash: DashboardService,
-    // private ngZone : NgZone  ,
+    // private ngZone : NgZone,
     public dialog: MatDialog
   ) {
   }
 
-  moduleId = 0;
+  moduleId =0 ;
   subModuleId = 0;
   moduleName = '';
   moduleClicked: boolean = false;
   actualModule = '';
-
   userName_ = sessionStorage.getItem('userName');
   userid = this.userName_
 
@@ -101,13 +140,15 @@ export class MainValuationComponent implements OnInit {
       || module === 'CORRECTNESS_OF_AMOUNT_POLICY_DEPOSIT_PRESENT_IN_POLICY' || module === 'PREMIUM_HOLIDAY_UNDER_PRODUCT_56_FLEXI_SMART'
       || module === 'CASES_WHERE_PREMIUM_PAYING_TERM_IS_MORE_THAN_POLICY_TERM' || module === 'CLIENT_ID_MERGER' || module === 'CI_RIDER_PREMIUM_IS_ZERO_FOR_IN_FORCE_CASES'
       || module === 'SB_NOT_PAID_POST_REVIVAL' || module === 'MORTLITY_GOT_DEDUCTED_IN_WAIVER_POLICIES' || module === 'UNITS_EQUAL_TO_ZERO_FOR_INFORCE_POLICIES' || module === 'SUM_ASSURED_NOT_CHANGED_POST_REVIVAL'
-      || module === 'SB_PAID_FOR_RPU_CASES' || module === 'GRACE_PERIOD_IS_OVER_BUT_POLICY_NOT_LAPSED' || module === 'POLICY_STATUS_MOVED_BACK_FROM_EXIT_TO_INFORCE'|| module === 'FUND_VALUE_QUERY' || module === 'UNCLAIM'  || module ==='UNCLAIM_') {
+      || module === 'SB_PAID_FOR_RPU_CASES' || module === 'GRACE_PERIOD_IS_OVER_BUT_POLICY_NOT_LAPSED' || module === 'POLICY_STATUS_MOVED_BACK_FROM_EXIT_TO_INFORCE'|| module === 'FUND_VALUE_QUERY' 
+      || module === 'UNCLAIM'  || module ==='UNCLAIM_') {
       this.router.navigate(['fetch-all-data'], { state: params });
     }
-    
+
     else {
       this.router.navigate(['fetch-data'], { state: params });
     }
+
 
   }
 
@@ -129,16 +170,12 @@ export class MainValuationComponent implements OnInit {
   }
 
   projectInfo = {};
-
-
   startDate: string;
   endDate: string;
-
   policyData_;
   showOverlay = false;
   exportTo;
   displayColumns;
-
   messageType; //06-05-21
   displayMessage = false;  //06-05-21
   message; //06-05-21
@@ -156,6 +193,7 @@ export class MainValuationComponent implements OnInit {
     // this.moduleClicked = true;
     console.log('moduleClicked >>', this.moduleClicked);
     this.moduleId = this.curr_projects_map[module];
+    console.log(this.moduleId, "id");
     // this.startDate= '';
     this.subModuleId = subModuleId;
 
@@ -170,13 +208,19 @@ export class MainValuationComponent implements OnInit {
 
     //Add the table format and export to excel
     //    
-    if (module === 'UNITS_INCONSISTENCY' ||  module === 'CORRECTNESS_OF_INCREASING_AND_DECREASING_SUM_ASSURED_BENEFIT_VALUATION' || module ==='CRITICAL_FIELDS' 
-    || module === 'RIDER_INCONSISTENCY' || module === 'BOUNDARY_CONDITION'  || module === 'LTR_PROCESS_STATUS_CHANGE' || module === 'DUPLICATE_ENTRIES'   ||module === 'PPA_CALCULATION') {
+    if (module === 'UNITS_INCONSISTENCY' ||  module === 'CORRECTNESS_OF_INCREASING_AND_DECREASING_SUM_ASSURED_BENEFIT_VALUATION' || module ==='CRITICAL_FIELDS'  || module === 'CRITICAL_FIELDS_SUMMARY'
+    || module === 'RIDER_INCONSISTENCY' || module === 'BOUNDARY_CONDITION'  || module === 'LTR_PROCESS_STATUS_CHANGE' || module === 'DUPLICATE_ENTRIES'   ||module === 'PPA_CALCULATION' ||module == 'Age_mismatch_NB_EB'
+    ||module === 'Diff_DOB_for_same_client_ID' || module === '_2M_Bonus' || module === 'Paid_Up_value') {
       this.router.navigate(['VALUATION'], { state: params });
       console.log("if");
 
     }
-    else if(module === 'DOD_PRESENT_BUT_STATUS_NOT_DEATH'){
+    else if(module === 'DOD_PRESENT_BUT_STATUS_NOT_DEATH' || module === '_1_DOD_BLANK_FOR_DEATH_RELATED_STATUSES' || module === '_2_SURRENDER_DATE_BLANK_FOR_SURRENDER_RELATED_STATUSES' || 
+    module ==='_3_NON_ZERO_SURRENDER_DATE_FOR_OTHER_THAN_SURRENDER_RELATED_STATUSES' || module === '_4_NON_ZERO_DATE_OF_DEATH_FOR_OTHER_THAN_DEATH_RELATED_STATUSES' || module ==='_5_FUP_BLANK'||
+    module ==='_6_FUP_AFTER_DATE_OF_VALUATION_FOR_LAPSED_CASES' || module === '_7_BASIC_SA_BASIC_PREMIUM_POLICY_TERM_PPT_ZERO_IN_NON_SP_NULL_ZERO' || module === '_8_NEGATIVE_PREMIUMS' || 
+    module === '_10_LA_GENDER_BLANK_NULL_INVALID_VALUE' || module === '_11_POLICYHOLDER_GENDER_BLANK_NULL_INVALID_VALUE' || module === '_12_DISTRIBUTION_CHANNEL_IS_BLANK_NULL' || module === '_14_SMOKER_FLAG_NULL_INVALID_BLANK_2N_AND_45_V07'
+    || module === '_15_RIDER_TERM_NOT_WITHIN_BASE_TERM' || module === '_16_SUM_ASSURED_ZERO_FOR_POLICIES_IN_PROTECTION_AND_SDF_DATA' || module=== '_17_1B_MATURED_INFORCE_LUMPSUM_MATURITY_FLAG_AS_Y' || module === '_18_1B_MATURED_LUMPSUM_MATURITY_FLAG_AS_N_OR_NULL' ||
+    module ==='_19_35_MATURED_INFORCE_FOR_ENDOWMENT_POLICIES' || module === '_20_35_MATURED_WHOLELIFE_POLICIES' || module === '_21_POLICY_TERM_ZERO_IN_SDF_DATA' || module === 'STATUS_INCONSISTENCY'){
       this.router.navigate(['VALUATION'], { state: params});
   
     }
@@ -187,13 +231,36 @@ export class MainValuationComponent implements OnInit {
     }
   }
 
+
+  SummaryTable(module, actualModule_, subModuleId){
+    this.moduleName = module;
+    this.actualModule = actualModule_;    
+    this.subModuleId = subModuleId;
+
+    console.log('moduleClicked >>', this.moduleClicked);
+    this.moduleId = this.Curr_Summary[module];
+    console.log(this.moduleId, "id");
+    
+    var params = {
+      'module': module,
+      'moduleId': this.moduleId,
+      'moduleName': this.moduleName,
+      'actualModule': this.actualModule,
+      'subModuleId': this.subModuleId
+    }
+    if(module === 'STATIC_FIELDS_SUMMARY1' || module === 'CRITICAL_FIELDS_SUMMARY1'){
+      this.router.navigate(['val-summary'], { state: params});
+    }
+
+  }
+
   backPage(){
   this.router.navigate(['ChooseDashboardComponent']);
   }
 
-  showMISWindow(){
-    this.router.navigate(['mis']);
-  }
+  // showMISWindow(){
+  //   this.router.navigate(['mis']);
+  // }
 
 }
 

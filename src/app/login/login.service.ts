@@ -26,12 +26,13 @@ export class LoginService {
     localStorage.clear();
     sessionStorage.clear();
     
-//  var currentUser = '{"authenticated":true}';
-// var userDetailsObj = {
-//   "currentUser": currentUser,
-//   "validLogin":true
-// };
-// return userDetailsObj
+    // var currentUser = '{"authenticated":true}';
+    // var userDetailsObj = {
+    //   "currentUser": currentUser,
+    //   "validLogin":true
+    //  };
+  
+    //  return userDetailsObj
    
     var url = '/core/login';
     

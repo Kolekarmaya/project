@@ -34,6 +34,8 @@ import { MISDashboardComponent } from './misdashboard/misdashboard.component';
 import { MisModuleComponent } from './mis-module/mis-module.component';
 import { MisGraphComponent } from './mis-graph/mis-graph.component';
 import { MainValuationComponent } from './main-valuation/main-valuation.component';
+import { AllModuleGraphComponent } from './all-module-graph/all-module-graph.component';
+import { ValSummaryComponent } from './val-summary/val-summary.component';
 
 const routes: Routes = [
   {
@@ -188,11 +190,18 @@ const routes: Routes = [
         path:'mis-graph',
       component : MisGraphComponent
       },
-
       {
         path:'main-valuation',
         component:MainValuationComponent
       },
+      {
+        path:'all-module-graph',
+        component:AllModuleGraphComponent
+      },
+      {
+        path: 'val-summary',
+        component: ValSummaryComponent
+      }
 
     ]
   }

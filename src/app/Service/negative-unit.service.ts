@@ -25,5 +25,20 @@ export class NegativeUnitService {
     return this.httpClient.post<any>(url , data, options ); //TODO remove comments
   }
 
+
+  public Summary (data){
+    console.log('inside fetchData DQ')
+    let url = '/core/SummaryData';    //TO
+    // let url="../../assets/summary.json"
+    console.log(url)
+    let httpHeaders = new HttpHeaders( { 'Content-Type' : 'application/json' });    
+    let options = {
+      headers: httpHeaders,
+      // params: processDetails
+    }; 
+
+    // return this.httpClient.get<any>(url);
+    return this.httpClient.post<any>(url , data, options ); //TODO remove comments
+  }
   
 }

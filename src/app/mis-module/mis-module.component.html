@@ -2,27 +2,29 @@
     <!-- <canvas id="myChart" style="width:100%;max-width:600px"></canvas> -->
     <div>
         <div class="redirectPage">
-            <button mat-raised-button color="primary" [routerLink]="['/mis']">
-                Redirect to dashboard page
+            <button mat-raised-button style="background-color: greenyellow;" [routerLink]="['/all-module-graph']">
+               View Monthly Modules
+            </button>
+            <button mat-raised-button color="primary" [routerLink]="['/mis']" style="margin-left: 10px;">
+                Redirect to page
             </button>
         </div>
     </div>
 
     <!-- *ngIf="dailymodule" -->
-    <div class="Misview" *ngIf="dailymodule" style="margin: 0% auto; width: 100%;">
-        <div class="row1" style=" width: 100%; ">
+    <div class="Misview" *ngIf="dailymodule" style="margin: 1% auto; width: 100%;">
+        <div class="row1" style=" width: 100%;">
             <div class="col" style="border: 2px solid#113f67;">
                 <div style="display: flex;padding-top: 2%;
                 padding-bottom: 2%;    font-size: 16px; background-color:#5e63b6;">
                     <th style="padding-left: 12%; color: white;"><b>MODULE NAME</b></th>
-                    <th style="padding-left: 17%; color: white;"><b>🟢PASS CASES / &#9899;FAIL CASES</b></th>
-                    <th style="padding-left: 16%; color: white;"><b>GRAPH VIEW</b></th>
+                    <th style="padding-left: 22%; color: white;"><b>PASS CASES %</b></th>
+                    <th style="padding-left: 24%; color: white;"><b>GRAPH VIEW</b></th>
                 </div>          
                 <div class="row" style="border: 1px solid #f5c7f7;" *ngFor="let element of moduleData; let i = index"
-                    (click)="mode($event)">
-                    <td class="col-4" style=" text-align: center;">{{element.REPORT_NAME}}</td>
-                    <td class="col-4" style=" text-align: center;"><progress style="background-color: green;" max="100"
-                            value="{{element.PASS}}"></progress>{{element.PASS}}%</td>
+                    >
+                    <td class="col-4" style=" text-align: center;">{{element.Module}}</td>
+                    <td class="col-4" style=" text-align: center;">{{element.Pass_Cases}}%</td>
                     <td class="col-4" style=" text-align: center;">
                         <button class="graph1" (click)="onEdit(element.id, element)">Graph</button>
                     </td>
@@ -30,5 +32,12 @@
             </div>
         </div>
 
+
     </div>
+
 </div>
+<div class="my-overlay1" *ngIf="QCloder" style="display: flex; flex-direction: column;">
+    <div class="ring">Loading...
+        <span></span>
+      </div>
+  </div>

@@ -48,7 +48,7 @@
   <div class="logobg">
   <div [ngClass]="{padding_10px: router.url.includes('product-dashboard') || router.url.includes('new-product') || router.url.includes('existing-product') || router.url.includes('product-mis')}">
     <router-outlet></router-outlet>
-    <img style="position: fixed; " *ngIf="router.url.includes('dashboard-page') " src="../../assets/image/sbi-life-logo.png">
+    <img style="position: fixed; " *ngIf="router.url.includes('dashboard-page')|| router.url.includes('main-valuation') " src="../../assets/image/sbi-life-logo.png">
   </div>
   </div>
  

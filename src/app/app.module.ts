@@ -80,6 +80,9 @@ import { MisModuleComponent } from './mis-module/mis-module.component';
 import { MisGraphComponent } from './mis-graph/mis-graph.component';
 import { MainValuationComponent } from './main-valuation/main-valuation.component';
 import { MispipePipe } from './mis-graph/mispipe.pipe';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AllModuleGraphComponent } from './all-module-graph/all-module-graph.component';
+import { ValSummaryComponent } from './val-summary/val-summary.component'
 
 
 @NgModule({
@@ -120,7 +123,9 @@ import { MispipePipe } from './mis-graph/mispipe.pipe';
     MisModuleComponent,
     MisGraphComponent,
     MainValuationComponent,
-    MispipePipe
+    MispipePipe,
+    AllModuleGraphComponent,
+    ValSummaryComponent
 
   ],
   imports: [
@@ -161,8 +166,10 @@ import { MispipePipe } from './mis-graph/mispipe.pipe';
     MatPaginatorModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
+    BrowserAnimationsModule,
     BackButtonDisableModule.forRoot({
-      preserveScrollPosition: true
+      preserveScrollPosition: true,
+  
     })
     
   ],

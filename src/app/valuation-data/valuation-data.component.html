@@ -1,4 +1,3 @@
-
 <div class="my-overlay1" *ngIf="showOverlay" style="display: flex; flex-direction: column;">
     <i class="fa fa-spinner fa-spin" aria-hidden="true" style="color: white;"></i>
     <span style="color:white; font-size: 30px;">Please wait...</span>
@@ -16,36 +15,37 @@
 
         <h5 style="padding: 20px;">
             Selected Module :
-            <span style="color: blue;"> {{actualModule}} </span>
+            <span style="color: blue;">{{module}}, {{actualModule}} </span>
         </h5>
 
         <div *ngIf="dropdown" style="margin-left: 35%;">
+
+            <label><b>TABLE NAME:</b></label>
+
+            <input type="text" [(ngModel)]="tablename" style="margin-left:20px" required>
+        </div>
         
-                <label><b>TABLE NAME:</b></label>
-               
-                <input type="text" [(ngModel)]="tablename" style="margin-left:20px" required>
-            </div>
-            <div class="box-container" style="border: solid 1px #212529;width: 100%;">
+        <div class="box-container" *ngIf="showBox" style="border: solid 1px #212529;width: 100%;">
             <div style="display: flex; justify-content: center;">
                 <!-- <div style="margin: 12px;font-weight: 500;">Enter date range :</div> -->
-                <div style="margin: 10px;" >
-                    
-                        <mat-label>Current_month &nbsp; </mat-label>
-                        <input type="text" [(ngModel)]="table1">
+                <div style="margin: 10px;">
+
+                    <mat-label>Current_month &nbsp; </mat-label>
+                    <input type="text" [(ngModel)]="table1">
                 </div>
                 <div style="margin: 10px;">
-                        <mat-label>Last_month &nbsp;</mat-label>
-                        <input type="text" [(ngModel)]="table2">
+                    <mat-label>Last_month &nbsp;</mat-label>
+                    <input type="text" [(ngModel)]="table2">
                 </div>
                 <div style="margin-top: 5px; margin-left: 20px;">
                     <button mat-raised-button color="primary" (click)="submitTableDate()">
-                        Process Input                                       
+                        Process Input
                     </button>
                 </div>
             </div>
         </div>
-            
-           
+
+
         <!-- <div *ngIf="!export" style="text-align: center; margin-top: 25px;">
             <button mat-raised-button matTooltip="Process Data" color="primary" (click)="processData()">
                 Process Input
@@ -66,7 +66,7 @@
 
 
     </div>
-    
+
     <div style="display: flex;flex-direction: row;margin: 20px;">
         <div *ngIf="openConfirmationBox" class="my-overlay"
             style="padding: 30%; padding-top: 50px;padding-bottom: 0;position: absolute;z-index: 99999999;">
@@ -86,9 +86,10 @@
 
             </div>
         </div>
-        
 
-        <div *ngIf="displayMessage" style="padding: 30%; padding-top: 50px;padding-bottom: 0;position: absolute; margin-top: -170px;">
+
+        <div *ngIf="displayMessage"
+            style="padding: 30%; padding-top: 50px;padding-bottom: 0;position: absolute; margin-top: -170px;">
             <div class="customAlert" [ngClass]="(isError==true)?'errorbgcolor':'messagebgcolor'" style="
                     height: 190px;
                     border: groove;
@@ -115,3 +116,42 @@
             </div>
         </div>
     </div>
+    <!-- -------------------------------------------------------csv data shown in table data---------------------------------------------- -->
+<!-- <div *ngIf="showData">
+    <div style=" text-align: center;">
+        <label><b>Search:</b></label>
+        <input class="searchinput search-field" type="text" [(ngModel)]="searchText" placeholder=" Search"
+            style="width: 240px; margin-left: 5px;"  />
+    </div>
+
+    <div  style="width: 100%; height: 500px; overflow-y: scroll;">
+        <table class="table table-bordered table-striped"
+            style="text-align: center;margin-bottom: 15px; font-size: 13px;border: 1px solid; margin-top:35px;">
+            <thead>
+
+                <tr class="heading">
+                    <th><b>ID </b></th>
+                    <th><b>MONTH</b></th>
+                    <th><b>WHIZIBLE ID</b></th>
+                    <th><b>DOR TO OPS IT</b></th>
+                    <th><b>FY</b></th>
+                    <th><b>VAL DQ IRDA</b></th>
+                    <th><b>CATEGORY</b></th>
+                </tr>
+            </thead>
+            <tbody  >
+                <tr class="TDbody" *ngFor="let item of Data | defect : searchText" style="background-color: white;">
+                    <td>{{item.POL_ID}}</td>
+                    <td>{{item.FV}}</td>
+                    <td>{{item.FUND_ID}}</td>
+                    <td>{{item.maya}}</td>
+                    <td>{{item.maya}}</td>
+                    <td>{{item.maya}}</td>
+                    <td>{{item.maya}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div> -->
+<!-- ----------------------------------------------------------------------------------------------------- -->

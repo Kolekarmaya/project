@@ -62,6 +62,7 @@ export class DashboardPageComponent implements OnInit {
     'UNITS_INCONSISTENCY', 'STATIC_FIELDS', 'CRITICAL_FIELDS', 'BOUNDARY_CONDITION', 'PPA_CALCULATION',
     'UNITS_PRESENT_IN_PENDING_STATUS', 'UNITS_PRESENT_IN_EXIT_STATUS', 'NEGATIVE_UNITS_PRESENT',
     'UNITS_PRESENT_IN_DISCO_&_REGULAR_FUND', 'UNITS_EQUAL_TO _ZERO_IN_INFORCE_POLICES', '1M_UNITS_PRESENT_IN_DISCO_&_REGULAR_FUNDS','CORRECTNESS_OF_INCREASING_AND_DECREASING_SUM_ASSURED_BENEFIT_VALUATION',
+    'LOAN_AMOUNT_PRESENT_IN_EXIT_CASES',
 
   ];
 
@@ -104,7 +105,7 @@ export class DashboardPageComponent implements OnInit {
     'FUNDING_NOT_DONE_UNDER_WAIVER_CASES': 38,
     'CORRECTNESS_OF_REBALANCING_EVENTS': 39,
     'REBALANCING_SKIPPED_CASES': 40,
-    'CORRECTNESS_CHECKING_OF_INCREASING_ANNUITY_OPT': 41,
+    '_22_CORRECTNESS_CHECKING_OF_INCREASING_ANNUITY_OPT': 41,
     'RIDER_TERM_OVER_BUT_STATUS_NOT_CHANGED': 42,
     'POLICY_STATUS_EXPIRED_BUT_RIDER_STATUS_INFORCE': 43,
     'PPA_CALCUATION_UNDER_FLEXI_SMART': 44,
@@ -116,11 +117,20 @@ export class DashboardPageComponent implements OnInit {
     'CORRECTNESS_OF_AMOUNT_POLICY_DEPOSIT_PRESENT_IN_POLICY': 50,
     'PREMIUM_HOLIDAY_UNDER_PRODUCT_56_FLEXI_SMART': 51,
     'UNCLAIM': 77,
+    'LOAN_AMOUNT_PRESENT_IN_EXIT_CASES':52,
+    '2W_PRODUCT_INCREASING_ANNUITY_OPTION_1.5_&_1.6':53,
+    'FULL_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_PAID_UP':54,
+    'MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU':55,
+    'PENDING_ACTIVITY': 56,
+    'INCREASING_ANNUITY':57,
+    'PAID_UP_VALUE':58,
+    'JOINT_BORROWER': 102,
+    'CORRECTNESS_OF_SA_UNDER_SAMF_PRODUCTS': 59,
+    'PPT_PT_FOR_LPPT':60,
+
 
     // Miscellaneous
     'FUND_VALUE_QUERY' : 75,
-
-  
     
 
     //Adhoc
@@ -144,7 +154,7 @@ export class DashboardPageComponent implements OnInit {
     // Joint Borrower - Rinnraksha
 
     'NEGATIVE_UNIT_PRESENT': 101,
-    'JOINT_BORROWER': 102,
+
     'UNIT_PRESENT_IN_EXIT_STATUS': 103,
     'UNIT_PRESENT_IN_PENDING_STATUS': 104,
     'UNIT_PRESENT_IN_DISCO_AND_FUNDS': 105,
@@ -159,7 +169,8 @@ export class DashboardPageComponent implements OnInit {
     'LTR_PROCESS_STATUS_CHANGE' : 307,
     'DUPLICATE_ENTRIES' :308,
     'RIDER_INCONSISTENCY' : 309,
-    'DOD_PRESENT_BUT_STATUS_NOT_DEATH' : 310
+    'DOD_PRESENT_BUT_STATUS_NOT_DEATH' : 310,
+
   };
   QCloder: boolean;
 
@@ -201,13 +212,13 @@ export class DashboardPageComponent implements OnInit {
       'subModuleId': this.subModuleId
     }
    
-    // add the module if you not access start date and end date 
+    // add the module if you not access start date and end date (derect process)
     if (module === 'LOYALTY_ADDITIONS_ULIP_PRODUCTS' || module === 'FUNDING_UNDER_PPWB_RIDER_CASES_ULIP' ||
       module === 'MATURITY_OVER_BUT_STATUS_NOT_CHANGED' || module === 'POLICIES_MATURED_BUT_NOT_IN_DUE_LIST' ||
       module === 'DISCO_CHG_GI_BONUS_AND_FMC_UNDER_FLEXI_SMART_PLUS_1M' || module === '56_36_07_CALCULATIONS' ||
       module === 'RIDER_SA_CAPPING' || module === 'DEFERRED_MATURITY_PAYOUTS' || module === 'ANNUITY_SKIPPED_CASES' ||
       module === 'CORRECTIVENESS_OF_CHECKING_INCREASING_SUM_ASSURED_BENEFIT' || module === 'LTR_PROCESS_STATUS_CHANGES' ||
-      module === 'DPF_LOCK_IN' || module === 'CORRECTNESS_CHECKING_OF_INCREASING_ANNUITY_OPT' ||
+      module === 'DPF_LOCK_IN' || module === '_22_CORRECTNESS_CHECKING_OF_INCREASING_ANNUITY_OPT' ||
       module === 'ADDITIONAL_UNITIZATION_AT_THE_TIME_OF_RETRIVAL' || module === 'OD_AMT_PRESENT_IN_INFORCE_CASES' ||
       module === 'MO' || module === 'ANNUAL_MORTALITY_GREATER_THAN_ANNUAL_PREMIUM' ||
       module === 'CORRECTNESS_CHECKING_OF_GUARANTEED_ADDITIONS' || module === 'DOC_FUP_DATE_MISMATCH' ||
@@ -221,25 +232,19 @@ export class DashboardPageComponent implements OnInit {
       || module === 'CORRECTNESS_OF_AMOUNT_POLICY_DEPOSIT_PRESENT_IN_POLICY' || module === 'PREMIUM_HOLIDAY_UNDER_PRODUCT_56_FLEXI_SMART'
       || module === 'CASES_WHERE_PREMIUM_PAYING_TERM_IS_MORE_THAN_POLICY_TERM' || module === 'CLIENT_ID_MERGER' || module === 'CI_RIDER_PREMIUM_IS_ZERO_FOR_IN_FORCE_CASES'
       || module === 'SB_NOT_PAID_POST_REVIVAL' || module === 'MORTLITY_GOT_DEDUCTED_IN_WAIVER_POLICIES' || module === 'UNITS_EQUAL_TO_ZERO_FOR_INFORCE_POLICIES' || module === 'SUM_ASSURED_NOT_CHANGED_POST_REVIVAL'
-      || module === 'SB_PAID_FOR_RPU_CASES' || module === 'GRACE_PERIOD_IS_OVER_BUT_POLICY_NOT_LAPSED' || module === 'POLICY_STATUS_MOVED_BACK_FROM_EXIT_TO_INFORCE'|| module === 'FUND_VALUE_QUERY' || module === 'UNCLAIM'  || module ==='UNCLAIM_') {
+      || module === 'SB_PAID_FOR_RPU_CASES' || module === 'GRACE_PERIOD_IS_OVER_BUT_POLICY_NOT_LAPSED' || module === 'POLICY_STATUS_MOVED_BACK_FROM_EXIT_TO_INFORCE'|| module === 'FUND_VALUE_QUERY' 
+      || module === 'UNCLAIM'  || module ==='UNCLAIM_' || module === 'LOAN_AMOUNT_PRESENT_IN_EXIT_CASES' || module ==='2W_PRODUCT_INCREASING_ANNUITY_OPTION_1.5_&_1.6'|| module ==='FULL_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_PAID_UP' ||
+       module === 'MINIMUM_PREMIUM_NOT_RECEIVED_BUT_STATUS_MOVED_TO_RPU' || module === 'PENDING_ACTIVITY' || module === 'PAID_UP_VALUE' || module === 'INCREASING_ANNUITY' || module === 'JOINT_BORROWER'|| module === 'CORRECTNESS_OF_SA_UNDER_SAMF_PRODUCTS' 
+       ||module === 'PPT_PT_FOR_LPPT' ) {
       this.router.navigate(['fetch-all-data'], { state: params });
     }
-    
-    else {
+    else 
+    {
       this.router.navigate(['fetch-data'], { state: params });
     }
 
   }
 
-
-
-  //new code
-
-  /*
-  curr_projects = ['Module 1', 'Module 2', 'Module 3', 'Module 4', 'Module 5', 'Module 6',
-    'Module 7', 'Module 8', 'Module 9', 'Module 10', 'Module 11', 'Module 12',
-    'Module 13', 'Module 14', 'Module 15', 'Module 16', 'Module 17', 'Module 18'];
-  */
 
   process = [
     'DISCO_CHARGES',
@@ -259,32 +264,32 @@ export class DashboardPageComponent implements OnInit {
   ];
 
   process_map = {
-    //QC MODULE
-    'DISCO_CHARGES': 201,
-    'ADMIN_CHARGES': 202,
-    'ALLOCATION_CHARGES': 203,
-    'NOT_IN_DUE_LIST': 204,
-    'STATUS_NOT_CHANGES': 205,
-    'ADMIN_SKIPPED_CASES': 206,
-    'MORTALITY_SKIPPED_CASES': 207,
-    'MORTALITY_CHARGES_UNITIZATION': 208,
-    'ADMIN_CHARGES_UNITIZATION': 209,
-    'ALLOCATION_AMOUNT_UNITIZATION': 210,
-    '1M': 211,
-    'ULIP_BASE': 212,
-    "STATUS_NOT_LAPSED_AFTER_GRACE_PERIOD": 213,
-    "LTR_NOT_PROCESSED_AFTER_LOCK-IN_PERIOD": 214,
-    'SB_Skipped_Cases': 216,
-    '_UNCLAIM_' : 217,
-    'Death':218,
-    'Maturity' : 219,
-    'LTR' :220,
-    'Policy_Deposit_Refund' : 221,
-    'NON_ULIP' :222,
-    'ULIP': 223,
-    'STANDARD' : 224,
-    'EXTRA' : 225,
-    'SB' :226,
+  //QC MODULE
+  'DISCO_CHARGES': 201,
+  'ADMIN_CHARGES': 202,
+  'ALLOCATION_CHARGES': 203,
+  'NOT_IN_DUE_LIST': 204,
+  'STATUS_NOT_CHANGES': 205,
+  'ADMIN_SKIPPED_CASES': 206,
+  'MORTALITY_SKIPPED_CASES': 207,
+  'MORTALITY_CHARGES_UNITIZATION': 208,
+  'ADMIN_CHARGES_UNITIZATION': 209,
+  'ALLOCATION_AMOUNT_UNITIZATION': 210,
+  'DISCO_CHARGES-1M': 211,
+  'DISCO_CHARGES-ULIP_BASE': 212,
+  "STATUS_NOT_LAPSED_AFTER_GRACE_PERIOD": 213,
+  "LTR_NOT_PROCESSED_AFTER_LOCK-IN_PERIOD": 214,
+  'SB_Skipped_Cases': 216,
+  '_UNCLAIM_' : 217,
+  'UNCLAIM-Death':218,
+  'UNCLAIM-Maturity' : 219,
+  'UNCLAIM-LTR' :220,
+  'UNCLAIM-Policy_Deposit_Refund' : 221,
+  'DEPOSITE_PRESENT_BUT_NOT_ALLOCATED-NON_ULIP' :222,
+  'DEPOSITE_PRESENT_BUT_NOT_ALLOCATED-ULIP': 223,
+  'MORTALITY_CHARGE-STANDARD' : 224,
+  'MORTALITY_CHARGE-EXTRA' : 225,
+  'UNCLAIM-SB' :226,
 
   };
 
@@ -412,7 +417,7 @@ export class DashboardPageComponent implements OnInit {
       console.log('sendProcessInfo called :: processId : ', this.processId, 'moduleId :', this.moduleId, 'moduleName :', this.moduleName, 'subModule :', this.subModuleId);
       if ((this.moduleId === 10 && this.subModuleId === 2 && this.processId === 1) || (this.moduleId === 11 && this.subModuleId === 2 && this.processId === 1)) {
         // this.showDateTime(this.dialogData,process);
-        this.dialog.open(this.dialogData)
+        this.dialog.open(this.dialogData);
 
       }
       else {
@@ -425,7 +430,7 @@ export class DashboardPageComponent implements OnInit {
     console.log(this.startDate);
     console.log(this.endDate);
     this.dialog.closeAll()
-    this.sendProcessInfo('PROCESS_INPUT')
+    this.sendProcessInfo('PROCESS_INPUT');
     // this.sendProcessInfo(data);
 
   }
@@ -573,6 +578,7 @@ export class DashboardPageComponent implements OnInit {
               moduleId: this.moduleId,
               processId: this.curr_process_map['PROCESS_OUTPUT_FLAG'],
               requested_by: 'Admin',
+              module:this.module
               // display_columns:(this.module=='STAMP_DUTY_NON_ULIP' ) ? this.dash.stamp_duty_display_columns : ( this.module=='NON_ULIP_PRE_CHECKING' )? this.dash.pre_checking_display_columns : this.dash.ulip_display_columns
             };
 
@@ -715,7 +721,7 @@ export class DashboardPageComponent implements OnInit {
       'moduleId': this.moduleId,
       'moduleName': this.moduleName,
       'actualModule': this.actualModule,
-      'subModuleId': this.subModuleId
+      'subModuleId': this.subModuleId,
     }
 
 

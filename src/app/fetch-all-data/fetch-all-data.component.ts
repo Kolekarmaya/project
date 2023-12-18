@@ -53,6 +53,8 @@ export class FetchAllDataComponent implements OnInit {
 
   fetchData(){
     let obj={
+      module: this.module,
+      actualModule:this.actualModule,
       module_id: this.moduleId,
       submodule_id: this.subModuleId,
       requested_by: 'Admin',
@@ -110,10 +112,18 @@ export class FetchAllDataComponent implements OnInit {
   showMessage() {
     this.displayMessage = false;
   }
-  exportAsXLSX() {
-    this.es.exportAsExcelFile(this.responseData, 'DataQuality');
+  // exportAsXLSX() {
+  //   this.es.exportAsExcelFile(this.responseData, 'DataQuality');
     
+  // }
+
+  exportAsCSVFile(){
+    this.es.exportAsCSVFile(this.responseData, 'DataQuality')
   }
 
+  exportAsXLSX() {
+    this.es.exportAsCSVFile(this.responseData,  'DataQuality');
+
+  }
 
 }

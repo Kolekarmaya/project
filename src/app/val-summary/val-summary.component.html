@@ -1,0 +1,140 @@
+
+<div *ngIf="displayMessage" style="padding: 30%; padding-top: 50px;padding-bottom: 0;position: absolute; z-index: 999;">
+    <div class="customAlert" [ngClass]="(isError==true)?'errorbgcolor':'messagebgcolor'" style="
+            height: 190px;
+            border: groove;
+            box-shadow: 5px 10px #888888;">
+        <div class="messageheader" style="padding: 30px;font-weight: 500;font-size: 25px;padding-bottom: 15px;
+                                        background: #3f51b5;color: white;
+                                        padding-top: 10px;margin-bottom: 15px">
+            <!-- Information Message :   -->
+            {{ messageType }}
+        </div>
+        <div class="messagebody" style="font-weight: 500;padding-left: 30px; padding-bottom: 10px;">
+            <!-- server [ error_code : 1 ]  -->
+            {{ message }}
+        </div>
+        <div class="messagebody" style="text-align: center;font-weight: 500;font-size: 20px;">
+            <!-- No Data Available -->
+            {{ messageDetails }}
+        </div>
+
+        <div style="text-align: right;margin-top: 30px;padding-right: 30px;">
+            <button style="width: 20%;height: 30px;" (click)="showMessage()">OK</button>
+        </div>
+
+    </div>
+</div>
+<!-- confirmation alert -->
+
+<div *ngIf="openConfirmationBox">
+    <div style="width: -webkit-fill-available;height: 30%; position: absolute; z-index: 99999999999999999;">
+        <div style="padding: 30%; padding-top: 50px;padding-bottom: 0;">
+            <div class="customAlert" [ngClass]="(isError==true)?'errorbgcolor':'messagebgcolor'">
+
+
+                <div class="messageheader">
+                    {{ messageType }}
+                </div>
+                <div class="messagebody" style="font-weight: 500;padding-left: 30px; padding-bottom: 10px;">
+                    <!-- {{ message }} -->
+                </div>
+                <div class="messagebody messageDetails">
+                    {{ messagePopup }}
+                </div>
+                <div class="msgImg">
+                    <img [src]="ImagePath">
+                </div>
+                <div class="popupDivBtn">
+                    <button class="popupBtn" (click)="showAlert()">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="background-color: #ffffffff; height: 100vh;">
+  
+  <!-- <div style="display: flex; justify-content: space-between;"> -->
+    
+  
+  <div class="redirectPage">
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/main-valuation/']"
+    >
+      Redirect to dashboard page
+    </button>
+  </div>
+<!-- </div> -->
+
+<h5 style="padding: 20px">
+  Selected Module :
+  <span style="color: blue">{{ module }}, {{actualModule}} </span>
+</h5>
+
+<div *ngIf="ExportToCsv" style="text-align: center; margin-top: 25px;">
+  <button mat-raised-button matTooltip="Export data to CSV" color="primary" (click)="exportAsCSV()">
+      Export To CSV
+  </button>
+</div>
+
+  <div style="margin-top: 5%;">
+
+  <div class="box-container" *ngIf="Summ_Form" style="border: solid 1px #212529; width: 80%; margin-left: 10%; ">
+    <div style="display: flex; justify-content: center;">
+        <!-- <div style="margin: 12px;font-weight: 500;">Enter date range :</div> -->
+        <div style="margin: 10px;">
+
+            <mat-label style="font-weight: bold;">Month Name :&nbsp; </mat-label>
+            <input type="text" [(ngModel)]="Month_Name">
+        </div>
+        <!-- <div style="margin: 10px;">
+            <mat-label>Current_Year &nbsp;</mat-label>
+            <input type="text" [(ngModel)]="Current_Year">
+        </div> -->
+        <div style="margin-top: 5px; margin-left: 20px;">
+            <button mat-raised-button color="primary" (click)="submitTableDate()">
+                Process Input
+            </button>
+        </div>
+    </div>
+</div>
+
+
+  <div *ngIf="val_summary_table" style="background-color: white;">
+    <!-- <div style="text-align: center">
+      <label><b>Search:</b></label>
+      <input class="searchinput search-field" type="text" [(ngModel)]="searchText" placeholder=" Search"
+        style="width: 240px; margin-left: 5px"/>
+    </div> -->
+
+
+    <div style="width: 100%; height: 450px;  overflow: scroll; padding-left: 20px;padding-right: 20px; " >
+      <table class="table table-bordered table-striped" style=" text-align: center; margin-bottom: 15px;
+          font-size: 13px;border: 1px solid;" >
+        <thead >
+          <tr class="heading">
+            <th style="background-color: #bee5f5">Exceptions</th>
+            <th style="background-color: #acedc5">Table Name</th>
+            <th style="background-color: #eeee91">Total Count</th>
+            <th style="background-color: #fec791">Month </th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr class="TDbody" *ngFor="let item of Data| defect : searchText "  style="background-color: white" >
+            <td>{{ item.REMARKS }}</td>
+            <td>{{ item.TABLE_NAME }}</td>
+            <td>{{ item.TOTAL_COUNT }}</td>
+            <td >{{ item.MONTH }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+</div>

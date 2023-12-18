@@ -2,59 +2,148 @@
     <div>
 
         <div class="redirectPage">
-            <div>
-                <mat-form-field>
-                    <mat-select >
-                        <input [(ngModel)]="searchText" placeholder="search text goes here" >
-                        <mat-option *ngFor="let element of Data | mispipe:searchText" [value]="element" >
-                            {{element}}
-                        </mat-option>
-    
-                    </mat-select>
-                </mat-form-field>
-            </div>
+            <!-- <div class="filterDropdown" style="display: flex;"
+                [ngClass]="filter_hide_Newposition == 0 ||  filter_hide_Newposition == 1 ? 'filterDropdown' : 'filterHide' ">
+
+                <div class="form-group">
+                        <label><b>Cases Status:</b></label><br>
+                        <mat-select [formControl]="toppings" multiple [(ngModel)]="searchText" style="margin-left: 0%;
+                        height: 32px;
+                        padding: 1px;
+                        width: 191px;
+                        border: 2px solid black;
+                        border-radius: 20px; background-color: white;">
+                            <input type="text" [(ngModel)]="searchText" placeholder="search text goes here">
+
+                            <mat-option *ngFor="let element of DropdownData | mispipe:searchText" [value]="element" title="{{ prodType }}">
+                                {{element}}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                    <div class="form-group">
+                        <label><b>Date Selection:</b></label><br>
+                        <mat-select [formControl]="toppings" multiple [(ngModel)]="datestat" style="margin-left: 0%;
+                        height: 32px;
+                        padding: 1px;
+                        width: 191px;
+                        border: 2px solid black;
+                        border-radius: 20px; background-color: white;">
+                            <input type="text" [(ngModel)]="datestat" placeholder="search text goes here">
+
+                            <mat-option *ngFor="let Date of DateList | mispipe:datestat" [value]="Date" title=" {{ Date }}   ">
+                                {{ Date }}                           
+                             </mat-option>
+                        </mat-select>
+                    </div>
+
+                    
+                    
+
+                    <div class="form-group">
+                        <button class="btn-primary" data-bs-toggle="modal"
+                            (click)="onDepartment()">Submit</button>
+                    </div>
+
+                
+            </div> -->
+            <!-- -/////- -->
+            
             <div class="mar">
-                <button mat-raised-button color="primary" (click)="  redirectPage() " style="margin-top: 7px;">
+                <button mat-raised-button color="primary" (click)="  redirectPage() " style="margin-top: 5px;">
                     Redirect to Module
                 </button>
             </div>
 
         </div>
 
-        <div>
-            <div class="row" style="display: flex; width: 100%; margin-top: 10px; text-align: center; ">
+        <!-- <div>
+            <div class="row" style="display: flex; width: 100%; text-align: center; ">
                 <div class="col">
-                    <h4> ModuleName : <span style="color: blue;">{{module}}</span></h4>
+                    <h4 style="margin-top: 10px;"> ModuleName : <span style="color: blue;">{{Module}}</span></h4>
                     <div>
-                        <h5>Total :{{TOTAL}}</h5>
-                        <h5>Pass :{{PASS}}</h5>
-                        <h5>Fail :{{FAIL}}</h5>
+                        <h5>Total :{{Total_Cases}}</h5>
+                        <h5>Pass :{{Pass_Cases}}</h5>
+                        <h5>Fail :{{Fail_Cases}}</h5>
                     </div>
 
                 </div>
                 <div class="col">
-                    <div style="margin-top: 5px;">
+                    <div style="margin-top: -4px;">
+                        {{Module}}
                         <canvas id="barChartData"></canvas>
-                        <p>{{module}}</p>
-                    </div>
 
+                    </div>
                 </div>
-                <div class="col">
-                    <div style="height: 190px;">
+                 <div class="col">
+                    <div style="height: 185px;">
                         <canvas id="pie-chart"></canvas>
-                        <p>{{module}}</p>
+                        {{Module}}
+                    </div>
+                </div> -->
+        <!-- </div>
+        </div> -->
+        <div class="col">
+            <div class="row">
+                <div class="col-5">
+                    <h3 style="margin-top: 20px;"> ModuleName : <a style="color: blue;">{{Module}}</a></h3>
+                    <div>
+                        <h4>Total :{{Total_Cases}}</h4>
+                        <h4>Pass :{{Pass_Cases}}</h4>
+                        <h4>Fail :{{Fail_Cases}}</h4>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <!-- {{Module}} -->
+                    <canvas id="barChartData" style="margin-top: 7px;"></canvas>
+                </div>
+                <div class="col-5">
+                    <canvas id="pie-chart"></canvas>
+                </div>
+
+
+            </div>
+
+            <!-- <div class="row"> -->
+            <!-- <div class="col-5">
+               <canvas id="pie-chart"></canvas>
+            </div> -->
+            <div style="width: 100%; overflow-x: scroll; overflow-y: hidden; ">
+                <div class="col-6" >
+                    <canvas id="Chart"></canvas>
+                </div>
+            </div>
+
+            <!-- </div> -->
+        </div>
+        <div *ngIf="openConfirmationBox">
+            <div style="width: -webkit-fill-available;height: 30%; position: absolute; z-index: 99999999999999999;">
+                <div style="padding: 30%; padding-top: 50px;padding-bottom: 0;">
+                    <div class="customAlert" [ngClass]="(isError==true)?'errorbgcolor':'messagebgcolor'">
+
+
+                        <div class="messageheader">
+                            {{ messageType }}
+                        </div>
+                        <div class="messagebody" style="font-weight: 500;padding-left: 30px; padding-bottom: 10px;">
+                            <!-- {{ message }} -->
+                        </div>
+                        <div class="messagebody messageDetails">
+                            {{ messagePopup }}
+                        </div>
+                        <div class="msgImg">
+                            <img [src]="ImagePath">
+                        </div>
+                        <div class="popupDivBtn">
+                            <button class="popupBtn" (click)="showAlert('OK')">OK</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-5">
-                <canvas id="myChart"></canvas>
-            </div>
-            <div class="col-5">
-                <canvas id="chart"></canvas>
-            </div>
-
-        </div>
-
     </div>
+
+    <div class="my-overlay1" *ngIf="QCloder" style="display: flex; flex-direction: column;">
+        <div class="ring">Loading...
+            <span></span>
+          </div>
+      </div>
